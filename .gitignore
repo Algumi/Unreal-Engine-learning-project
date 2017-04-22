@@ -13,3 +13,4 @@ EscapeRoom/Content/StarterContent/
 ######################
 *.VC.db
 patch.diff
+*.suo
