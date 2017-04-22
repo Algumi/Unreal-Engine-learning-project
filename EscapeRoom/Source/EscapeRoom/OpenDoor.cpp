@@ -3,7 +3,6 @@
 #include "EscapeRoom.h"
 #include "OpenDoor.h"
 
-
 // Sets default values for this component's properties
 UOpenDoor::UOpenDoor()
 {
@@ -19,11 +18,14 @@ UOpenDoor::UOpenDoor()
 void UOpenDoor::BeginPlay()
 {
 	Super::BeginPlay();
+}
 
+void UOpenDoor::DoorOpen()
+{
 	AActor* Owner = GetOwner();
-	// Create rotation
+
 	FRotator NewRotation = FRotator(0.f, -69.f, 0.f);
-	
+
 	Owner->SetActorRotation(NewRotation);
 }
 
@@ -33,6 +35,12 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	// ...
+	// Poll the trigger volume every frame
+	// If the ActorThatOpens is in the volume
+	if (PressurePlate->IsOverlappingActor(ActorThatOpens))
+	{
+		DoorOpen();
+	}
+		
 }
 

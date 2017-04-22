@@ -15,6 +15,8 @@ public:
 	// Sets default values for this component's properties
 	UOpenDoor();
 
+	void DoorOpen();
+
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
@@ -30,4 +32,7 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	ATriggerVolume* PressurePlate;
+
+	UPROPERTY(EditAnywhere)
+	AActor* ActorThatOpens;
 };
