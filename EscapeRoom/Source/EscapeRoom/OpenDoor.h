@@ -41,5 +41,6 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	AActor* ActorThatOpens;
+
 	AActor* Owner; // Door that opens / closes.
 };
