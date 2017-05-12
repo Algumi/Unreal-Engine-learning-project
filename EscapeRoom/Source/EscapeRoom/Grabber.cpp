@@ -29,6 +29,7 @@ void UGrabber::BeginPlay()
 		UE_LOG(LogTemp, Warning, TEXT("Input component is attached!"));
 		// Bind the key for grabbing
 		InputComponent->BindAction("Grab", IE_Pressed, this, &UGrabber::Grab);
+		InputComponent->BindAction("Grab", IE_Released, this, &UGrabber::Release);
 	}
 	if (!PhysicsHandle)
 	{
@@ -44,8 +45,14 @@ void UGrabber::BeginPlay()
 
 }
 
-void UGrabber::Grab() {
+void UGrabber::Grab() 
+{
 	UE_LOG(LogTemp, Warning, TEXT("Grab key is pressed"));
+}
+
+void UGrabber::Release() 
+{
+	UE_LOG(LogTemp, Warning, TEXT("Everything is released"));
 }
 
 // Called every frame
