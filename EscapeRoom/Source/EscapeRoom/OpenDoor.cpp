@@ -18,9 +18,7 @@ UOpenDoor::UOpenDoor()
 void UOpenDoor::BeginPlay()
 {
 	Super::BeginPlay();
-
 	Owner = GetOwner(); // The door that opens
-	ActorThatOpens = GetWorld()->GetFirstPlayerController()->GetPawn();
 }
 
 void UOpenDoor::DoorOpen()
@@ -41,8 +39,7 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// Poll the trigger volume every frame
-	// If the ActorThatOpens is in the volume
-	if (PressurePlate->IsOverlappingActor(ActorThatOpens))
+	if (GetTotalMassOfActorsOnPlate() > 50.f) // TODO make into a parameter
 	{
 		DoorOpen();
 		DoorLastOpenTime = GetWorld()->GetTimeSeconds();
@@ -53,6 +50,9 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 		DoorClose();
 	}
 	
-	//Check if the door has to be closed after some amount of time
+}
+
+float UOpenDoor::GetTotalMassOfActorsOnPlate() {
+
 }
 
