@@ -14,15 +14,24 @@ class ESCAPEROOM_API UOpenDoor : public UActorComponent
 public:	
 	// Sets default values for this component's properties
 	UOpenDoor();
+public:
+	void OpenDoor();
 
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-		
+private:
+	UPROPERTY(VisibleAnywhere)
+	float OpenAngle = 69.0f;
+
+	UPROPERTY(EditAnywhere)
+	ATriggerVolume* PressurePlate;
 	
+	UPROPERTY(EditAnywhere)
+	AActor* ActorThatOpens;
 };
