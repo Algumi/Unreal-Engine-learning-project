@@ -40,9 +40,23 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 	);
 
 	// Log out the player's view point
-	UE_LOG(LogTemp, Warning, TEXT("Location : %s, Rotation %s"), 
+	/*UE_LOG(LogTemp, Warning, TEXT("Location : %s, Rotation %s"), 
 		*PlayerViewPointLocation.ToString(), 
 		*PlayerViewPointRotation.ToString()
+	);*/
+
+	FVector LineTraceEnd = PlayerViewPointLocation + PlayerViewPointRotation.Vector() * Reach;
+
+	// Draw a red trace in the world to visualise
+	DrawDebugLine(
+		GetWorld(),
+		PlayerViewPointLocation,
+		LineTraceEnd,
+		FColor(255, 0, 0),
+		false,
+		0.f,
+		0.f,
+		10.f
 	);
 }
 
